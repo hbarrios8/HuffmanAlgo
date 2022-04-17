@@ -17,7 +17,7 @@ class huffmanType {
 
         charNode()//setting default constructor
         {
-            char = char(2);
+            ch = '~';
             weight = 0;
             next = NULL;
         };
@@ -29,7 +29,7 @@ charNode *root, **array;
         huffmanType() //creating a constructor for the class
         {
             root = NULL;
-            arr = new charNode* [MAX]; //creates a dynamic array of pointers
+            array = new charNode* [MAX]; //creates a dynamic array of pointers
             for(int i = 0; i < MAX; i++)
                     arr[i] = NULL;// sets all pointers to NULL
 
@@ -89,9 +89,11 @@ void printList()
     charNode *p;
     p = root;
     while(p)
+		{
         cout << p->char << "\t" << p->weight << endl;
         p = p->next;
-}
-}
-};
+		}
 
+}
+
+};
