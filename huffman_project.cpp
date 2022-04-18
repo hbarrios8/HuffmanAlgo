@@ -1,6 +1,6 @@
 //Edwin Smith: EdwinSmith@my.unt.edu
 //Varun Gelli: VarunGelli@my.unt.edu
-
+//Hector Barrios: hectorbarrios@my.unt.edu
 #include <iostream>
 #include <fstream>
 using namespace std;
