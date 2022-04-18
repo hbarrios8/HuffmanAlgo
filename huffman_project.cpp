@@ -1,3 +1,6 @@
+//Edwin Smith: EdwinSmith@my.unt.edu
+//Varun Gelli: VarunGelli@my.unt.edu
+
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -8,13 +11,15 @@ class huffType
 {
 	private:
 		
-		struct nodeType
+	// creating the character node within the class
+		struct charNode 
 		{
 			char ch;
 			int weight;
-			nodeType *next, *zero, *one;
+			charNode *next, *zero, *one;
 			
-			nodeType()
+			//setting default constructor
+			charNode()
 			{
 				ch = '*';
 				weight = 0;
@@ -22,9 +27,9 @@ class huffType
 			}
 		};
 		
-		nodeType *root, **arr;
+		charNode *root, **arr;
 		
-		void alt_printHuffTree(nodeType *p, int lvl)
+		void alt_printHuffTree(charNode *p, int lvl)
 		{
 			if(p)
 			{
@@ -33,9 +38,11 @@ class huffType
 				alt_printHuffTree(p->one, lvl +1);
 			}
 		}
-		void put(nodeType* p)
+	
+	        // insert node while preserving priority 
+		void put(charNode* p)
 		{
-			nodeType** dp;
+			charNode** dp;
 			dp = &root;
 			while(*dp && (*dp) ->weight <= p->weight)
 			{
@@ -45,7 +52,8 @@ class huffType
 			*dp = p;
 		}
 		
-		bool isThere(nodeType *p, char myCh)
+	        //set *p to myCh
+		bool isThere(charNode *p, char myCh)
 		{
 			if(!p)
 			{
@@ -65,11 +73,11 @@ class huffType
 		}
 		
 	public:
-		
+		//creating a constructor for the class
 		huffType()
 		{
 			root = NULL;
-			arr = new nodeType*[MAX];
+			arr = new charNode*[MAX];
 			
 			for(int i=0; i<MAX; i++)
 			{
@@ -77,6 +85,7 @@ class huffType
 			}
 		}
 		
+                //read input file and store in array of structs
 		void loadArray()
 		{
 			ifstream inFile;
@@ -94,12 +103,12 @@ class huffType
 				int j = (int)myCh;
 				if(!arr[j])
 				{
-					arr[j] = new nodeType;
-					arr[j]->ch = myCh;
+					arr[j] = new charNode; //create a new character node
+					arr[j]->ch = myCh; //add the charcter to the node
 				}
-				arr[j]->weight++;
+				arr[j]->weight++; // add weight once a new node is assigned a character
 			}
-			inFile.close();
+			inFile.close(); //close file
 			cout.put('\n');
 		}
 		
@@ -129,7 +138,7 @@ class huffType
 		void printLinkedList()
 		{
 			cout << "\n\nPrint the linked list: \n";
-			nodeType* p;
+			charNode* p;
 			p = root;
 			while(p)
 			{
@@ -140,10 +149,10 @@ class huffType
 		
 		void buildHuffTree()
 		{
-			nodeType *p;
+			charNode *p;
 			while(root->next)
 			{
-				p = new nodeType;
+				p = new charNode;
 				p->zero = root;
 				p->one = root->next;
 				p->weight = p->zero->weight + p->one->weight;
@@ -159,7 +168,7 @@ class huffType
 		}
 	void encode(char ch)
 	{
-		nodeType *p=root;
+		charNode *p=root;
 		while(p->zero)
 		{
 			if(isThere(p->zero, ch))
@@ -181,7 +190,7 @@ class huffType
 		int i=0;
 		char digit;
 		
-		nodeType *p=root;
+		charNode *p=root;
 		while(p->zero)
 		{
 			digit = s[i++];
@@ -204,10 +213,10 @@ class huffType
 
 int main()
 {
-	huffType myHuffman;
+	huffType myHuffman; 
 	
 	myHuffman.loadArray();
-	myHuffman.printArray();
+	myHuffman.printArray(); 
 	
 	myHuffman.buildLinkedList();
 	myHuffman.printLinkedList();
