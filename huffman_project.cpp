@@ -189,7 +189,7 @@ class huffType
 	
 	/*
 	void printEncoding(char ch){
-		cout << ch << "     " << myHuffman.encode(ch) << endl;
+		cout << ch << "     " << encode(ch) << endl;
 	}
 	*/
 
