@@ -184,6 +184,14 @@ class huffType
 		}
 		cout << "\n\nDone\n\n";
 	}
+	
+	//printEncoding code???
+	
+	/*
+	void printEncoding(char ch){
+		cout << ch << "     " << myHuffman.encode(ch) << endl;
+	}
+	*/
 
 	char decode(char *s)
 	{
@@ -235,6 +243,7 @@ int main()
 		}
 		cout << "\n\n";
 		myHuffman.encode(ch);
+		//myHuffman.printEncoding(ch);
 	}
 	
 	char* s;
